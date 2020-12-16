@@ -90,6 +90,14 @@ public class SwiftyStoreKit {
         paymentQueueController.finishTransaction(transaction)
     }
     
+    fileprivate func redeemCode() {
+        paymentQueueController.redeemCode()
+    }
+    
+    fileprivate func canRedeemCodes() -> Bool {
+        return paymentQueueController.canRedeemCodes()
+    }
+    
     private func processPurchaseResult(_ result: TransactionResult) -> PurchaseResult {
         switch result {
         case .purchased(let purchase):
@@ -224,6 +232,14 @@ extension SwiftyStoreKit {
     }
     public class func cancel(_ downloads: [SKDownload]) {
         sharedInstance.paymentQueueController.cancel(downloads)
+    }
+    
+    public class func redeemCode() {
+        sharedInstance.redeemCode()
+    }
+    
+    public class func canRedeemCodes() -> Bool {
+        return sharedInstance.canRedeemCodes()
     }
 }
 

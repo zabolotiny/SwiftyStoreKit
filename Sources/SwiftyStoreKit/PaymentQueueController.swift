@@ -121,6 +121,22 @@ class PaymentQueueController: NSObject, SKPaymentTransactionObserver {
         assert(completeTransactionsController.completeTransactions != nil, message)
     }
     
+    func redeemCode() {
+        guard let queue = paymentQueue as? SKPaymentQueue else{
+            return;
+        }
+        if #available(iOSApplicationExtension 14.0, *) {
+            queue.presentCodeRedemptionSheet()
+        }
+    }
+    
+    func canRedeemCodes() -> Bool {
+        if #available(iOSApplicationExtension 14.0, *) {
+            return true
+        }
+        return false
+    }
+    
     func startPayment(_ payment: Payment) {
         assertCompleteTransactionsWasCalled()
         
