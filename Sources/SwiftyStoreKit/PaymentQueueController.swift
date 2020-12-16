@@ -125,13 +125,13 @@ class PaymentQueueController: NSObject, SKPaymentTransactionObserver {
         guard let queue = paymentQueue as? SKPaymentQueue else{
             return;
         }
-        if #available(iOSApplicationExtension 14.0, *) {
+        if #available(iOS 14.0, *) {
             queue.presentCodeRedemptionSheet()
         }
     }
     
     func canRedeemCodes() -> Bool {
-        if #available(iOSApplicationExtension 14.0, *) {
+        if #available(iOS 14.0, *) {
             return true
         }
         return false
